@@ -21,6 +21,8 @@ OPENFEC_API_KEY = <your_api_key_from_step_2>
 ```
 
 ## Operation
+
+### `open_fec_scraper.py` --- Download Committee Receipt Data
 To run the data download script, navigate to the directory of your local clone of the repository and run the following from the command line:
 ```
 python ./open_fec_scraper.py
@@ -32,6 +34,18 @@ To get receipt data from a different set of committees, run the following:
 python ./open_fec_scraper.py -c <COMMITTEE_ID_1> <COMMITTEE_ID_2> <COMMITTEE_ID_3> ...
 ```
 Candidate committees can be found using the OpenFEC portal here: https://www.fec.gov/data/
+
+### `fec_data_merge.py` --- Find Donor Overlap
+To run the analysis script, run the following from the command line:
+```
+python ./fec_data_merge.py
+```
+This takes each combination of the default committee data files in your `./data` directory and finds shared donor names between the different files.
+
+To get receipt data from a particular set of committee data files, run the following:
+```
+python ./fec_data_merge.py -c <COMMITTEE_ID_1> <COMMITTEE_ID_2> <COMMITTEE_ID_3> ...
+```
 
 ## License
 Apache 2.0 http://www.apache.org/licenses/
