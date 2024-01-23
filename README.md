@@ -34,4 +34,4 @@ python ./open_fec_scraper.py -c <COMMITTEE_ID_1> <COMMITTEE_ID_2> <COMMITTEE_ID_
 Candidate committees can be found using the OpenFEC portal here: https://www.fec.gov/data/
 
 ## License
-TK TK
+Apache 2.0 http://www.apache.org/licenses/
