@@ -1,4 +1,4 @@
-# Candidate Donor Merge
+# Sunlight FEC Analysis - Committee Receipt Merge
 Michael Nolan
 Sunlight Search
 2024-01-12
@@ -21,7 +21,7 @@ OPENFEC_API_KEY = <your_api_key_from_step_2>
 ```
 
 ## Operation
-To run the script, navigate to the directory of your local clone of the repository and run the following from the command line:
+To run the data download script, navigate to the directory of your local clone of the repository and run the following from the command line:
 ```
 python ./open_fec_scraper.py
 ```
