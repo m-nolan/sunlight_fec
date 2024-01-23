@@ -6,6 +6,14 @@ from argparse import ArgumentParser
 from dotenv import load_dotenv
 from tqdm import tqdm
 
+DEFAULT_COMMITTEES = [
+    'C00848168',    # M. Wilkinson
+    'C00655613',    # S. Lee
+    'C00806307',    # B. Williams
+    'C00765719',    # M. De La Cruz
+    'C00801985',    # K. Kiley
+] #default committees
+
 def parse_inputs():
     parser = ArgumentParser()
     parser.add_argument('-c','--committee_ids',nargs='*')
@@ -77,13 +85,7 @@ def main(committee_ids):
     if committee_ids:
         pass
     else:
-        committee_ids = [
-            'C00848168',    # M. Wilkinson
-            'C00655613',    # S. Lee
-            'C00806307',    # B. Williams
-            'C00765719',    # M. De La Cruz
-            'C00801985',    # K. Kiley
-        ] #default committees
+        committee_ids = DEFAULT_COMMITTEES
     load_dotenv()
     configure_data_directory()
     get_receipt_data(committee_ids)

@@ -44,6 +44,11 @@ python ./fec_data_merge.py
 ```
 This takes each combination of the default committee data files in your `./data` directory and finds shared donor names between the different files.
 
+To log data output to a markdown file (saved w/current timestamp to `./data`), run with the `-l` flag:
+```
+python ./fec_data_merge.py -l
+```
+
 To get receipt data from a particular set of committee data files, run the following:
 ```
 python ./fec_data_merge.py -c <COMMITTEE_ID_1> <COMMITTEE_ID_2> <COMMITTEE_ID_3> ...
