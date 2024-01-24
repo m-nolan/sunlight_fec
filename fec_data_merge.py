@@ -32,7 +32,7 @@ def load_committee_data(committee_id):
     
 
 def init_log_file():
-    log_file_path = f"./data/receipt_overlap_{datetime.strftime(datetime.now(),'%d-%m-%y_%H-%M-%S')}.md"
+    log_file_path = f"./data/receipt_overlap_{datetime.strftime(datetime.now(),'%Y-%m-%d_%H-%M-%S')}.md"
     return log_file_path
 
 def log_contributor_overlap(log_file,committee_ids,committee_names,shared_contributors):

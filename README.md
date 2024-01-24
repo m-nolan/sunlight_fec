@@ -10,6 +10,7 @@ Script and tooling to access and compare contributions to and payouts from diffe
 - python >= 3.6
 - numpy
 - pandas
+- ratelimit
 - requests
 - tqdm
 

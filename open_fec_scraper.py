@@ -8,6 +8,8 @@ from glob import glob
 from json.decoder import JSONDecodeError
 from tqdm import tqdm
 
+from open_fec_api import api_get
+
 DEFAULT_COMMITTEES = [
     'C00848168',    # M. Wilkinson
     'C00655613',    # S. Lee
@@ -31,34 +33,20 @@ def configure_data_directory():
 
 def get_new_receipt_data(committee_ids):
     for committee_id in committee_ids:
-        try:
-            print(f'committee_id:\t{committee_id}')
-            existing_df_file_list = glob(f'./data/receipt_{committee_id}_*.csv')
-            if existing_df_file_list:
-                existing_df = pd.read_csv(existing_df_file_list[0],low_memory=False)
-                min_date = existing_df['contribution_receipt_date'][0]
-                _committee_name = os.path.basename(existing_df_file_list[0]).split('_')[-1][:-4]
-            else:
-                existing_df = None
-                min_date = None
-            committee_receipt_df, committee_name = get_committee_recipt_df(committee_id,min_date)
-            if committee_name is None:
-                committee_name = _committee_name
-            committee_receipt_df = pd.concat([committee_receipt_df,existing_df],ignore_index=True)
-            save_receipt_df(committee_receipt_df,committee_id,committee_name)
-        except JSONDecodeError as jde:
-            # not sure what causes this error, seems to be somewhere between
-            # the builting JSON decoding package and the way the data comes
-            # back from the server.
-            print(jde)
-
-def api_get(url):
-    r = req.get(url)
-    if r.status_code == 200:
-        return r
-    else:
-        print(f'ERROR: Status Code {r.status_code} ({r.reason})')
-        r.raise_for_status()
+        print(f'committee_id:\t{committee_id}')
+        existing_df_file_list = glob(f'./data/receipt_{committee_id}_*.csv')
+        if existing_df_file_list:
+            existing_df = pd.read_csv(existing_df_file_list[0],low_memory=False)
+            min_date = existing_df['contribution_receipt_date'][0]
+            _committee_name = os.path.basename(existing_df_file_list[0]).split('_')[-1][:-4]
+        else:
+            existing_df = None
+            min_date = None
+        committee_receipt_df, committee_name = get_committee_recipt_df(committee_id,min_date)
+        if committee_name is None:
+            committee_name = _committee_name
+        committee_receipt_df = pd.concat([committee_receipt_df,existing_df],ignore_index=True)
+        save_receipt_df(committee_receipt_df,committee_id,committee_name)
 
 def api_return_to_df(receipt_r):
     try:
