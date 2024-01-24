@@ -37,9 +37,9 @@ def init_log_file():
 
 def log_contributor_overlap(log_file,committee_ids,committee_names,shared_contributors):
     with open(log_file,mode='a') as log_f:
-        print(f"# {', '.join(committee_ids)}\n:",file=log_f) # added line breaks make github markdown happy
+        print(f"# {', '.join(committee_ids)}\n",file=log_f) # added line breaks make github markdown happy
         print(f"{', '.join(committee_names)}\n",file=log_f)
-        print(f'shared contributors found:\t{len(shared_contributors)}',file=log_f)
+        print(f'shared contributors found:\t{len(shared_contributors)}\n',file=log_f)
         [print(f'- {s_c}',file=log_f) for s_c in shared_contributors]
         print('\n',file=log_f)
 
