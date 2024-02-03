@@ -1,11 +1,11 @@
-DEFAULT_COMMITTEES = [
-    'C00848168',    # M. Wilkinson
-    'C00655613',    # S. Lee
-    'C00806307',    # B. Williams
-    'C00765719',    # M. De La Cruz
-    'C00801985',    # K. Kiley
-    'C00726687',    # P. Junge
-] #default committees
+DEFAULT_CANDIDATE_DATA = [
+    ('H4CA49164','C00848168'),    # M. Wilkinson
+    ('H6NV04020','C00655613'),    # S. Lee
+    ('H2NY22212','C00806307'),    # B. Williams
+    ('H0TX15124','C00765719'),    # M. De La Cruz
+    ('H2CA03157','C00801985'),    # K. Kiley
+    ('H0MI08141','C00726687'),    # P. Junge
+] #default (candidate, committee) ids
 
 RECEIPT_API_URL_ROOT = 'https://api.open.fec.gov/v1/schedules/schedule_a/?'
 DISBURSEMENT_API_URL_ROOT = 'https://api.open.fec.gov/v1/schedules/schedule_b/?'

@@ -5,8 +5,8 @@ from ratelimit import limits, sleep_and_retry
 # 1000 calls per hour, or 50 in 3 minutes. Makes pauses less intrusive.
 # Day-to-day donations should not be massive for each committee, and each API
 # call returns up to 100 receipts.
-MAX_CALLS = 50
-PERIOD = 3*60 # minutes
+MAX_CALLS = 5
+PERIOD = 18 # seconds
 
 @sleep_and_retry
 @limits(MAX_CALLS,PERIOD)
