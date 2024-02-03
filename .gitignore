@@ -3,3 +3,4 @@
 *.jpg
 .env
 __pycache__
+data/scratch/*

@@ -9,15 +9,7 @@ from json.decoder import JSONDecodeError
 from tqdm import tqdm
 
 from open_fec_api import api_get
-
-DEFAULT_COMMITTEES = [
-    'C00848168',    # M. Wilkinson
-    'C00655613',    # S. Lee
-    'C00806307',    # B. Williams
-    'C00765719',    # M. De La Cruz
-    'C00801985',    # K. Kiley
-    'C00726687',    # P. Junge
-] #default committees
+from project_params import DEFAULT_COMMITTEES, RECEIPT_API_URL_ROOT, DISBURSEMENT_API_URL_ROOT, IND_EXP_API_URL_ROOT
 
 def parse_inputs():
     parser = ArgumentParser()
@@ -96,17 +88,33 @@ def save_receipt_df(receipt_df,committee_id,committee_name):
     print(f'saving recipt data to:\t{csv_file_name}')
     receipt_df.to_csv(csv_file_name)
 
-def create_receipt_api_call_url(committee_id,pagination_dict={},min_date=None,per_page=100):
-    api_url_root = 'https://api.open.fec.gov/v1/schedules/schedule_a/?'
+def api_request_dict(pagination_dict,min_date,**kwargs):
     request_dict = {
-        'committee_id': committee_id, #input
-        'per_page': per_page, #input
+        **kwargs,
         'api_key': os.getenv("OPENFEC_API_KEY"),
         **pagination_dict,
     }
     if min_date:
         request_dict['min_date'] = min_date
+    return request_dict
+
+def api_str_from_dict(api_url_root,request_dict):
     return api_url_root + '&'.join([f'{k}={v}' for k, v in request_dict.items()])
+
+def create_receipt_api_call_url(committee_id,pagination_dict={},min_date=None,per_page=100):
+    api_url_root = RECEIPT_API_URL_ROOT
+    request_dict = api_request_dict(pagination_dict,min_date,committee_id=committee_id,per_page=per_page)
+    return api_str_from_dict(api_url_root,request_dict)
+
+def create_disbursement_api_call_url(committee_id,pagination_dict={},min_date=None,per_page=100):
+    api_url_root = DISBURSEMENT_API_URL_ROOT
+    request_dict = api_request_dict(pagination_dict,min_date,committee_id=committee_id,per_page=per_page)
+    return api_str_from_dict(api_url_root,request_dict)
+
+def create_ind_exp_api_call_url(candidate_id,pagination_dict={},min_date=None,per_page=100):
+    api_url_root = IND_EXP_API_URL_ROOT
+    request_dict = api_request_dict(pagination_dict,min_date,candidate_id=candidate_id,per_page=per_page)
+    return api_str_from_dict(api_url_root,request_dict)
 
 def main(committee_ids):
     if committee_ids:

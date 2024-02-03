@@ -7,7 +7,7 @@ from datetime import datetime
 from glob import glob
 from itertools import chain, combinations
 
-from open_fec_scraper import DEFAULT_COMMITTEES
+from project_params import DEFAULT_COMMITTEES
 
 def parse_inputs():
     parser = ArgumentParser()
@@ -56,6 +56,7 @@ def find_contributor_overlap(receipt_data_list,committee_ids,committee_name_list
                 *[set(r_d['contributor_name']) for r_d in _receipt_data_list]
             )
         )
+        shared_contributors.sort() # make the diffs make sense
         print(f'shared contributors found:\t{len(shared_contributors)}')
         if log_file:
             log_contributor_overlap(log_file,_committee_ids,_committee_names,shared_contributors)
