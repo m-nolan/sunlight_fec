@@ -3,6 +3,8 @@ Michael Nolan, Sunlight Search
 
 Created: 2024-01-12
 
+Updated: 2024-02-03
+
 ## Overview
 Script and tooling to access and compare contributions to and payouts from different U.S. political campaigns. Data accessed from the Federal Election Commission's openFEC data access API: https://api.open.fec.gov/developers/
 
@@ -27,7 +29,7 @@ OPENFEC_API_KEY = <your_api_key_from_step_2>
 ## Operation
 
 ### `open_fec_scraper.py` --- Download Committee Financial Disclosure Data
-**Supports schedule a (receipts), b (disbursements) FEC data.**
+**Supports schedule a (receipts), b (disbursements), and e (independent expeditures) FEC data.**
 
 To run the data download script, navigate to the directory of your local clone of the repository and run the following from the command line:
 ```
@@ -38,7 +40,7 @@ This will run the script to download and save as local CSV files all schedule re
 Candidate committees can be found using the OpenFEC portal here: https://www.fec.gov/data/
 
 ### `fec_data_merge.py` --- Find Donor Overlap
-**Supports schedule a (receipts) FEC data.**
+**Supports schedule a (receipts), b (disbursements), and e (independent expeditures) FEC data.**
 To run the analysis script, run the following from the command line:
 ```
 python ./fec_data_merge.py
