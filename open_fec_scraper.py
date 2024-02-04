@@ -54,6 +54,9 @@ def api_return_to_df(r):
         if 'contributor_name' in exclude_list:
             contributor_name = [_r['contributor_name'].replace(',',';') for _r in r.json()['results']]
             df['contributor_name'] = contributor_name
+        if 'committee' in exclude_list:
+            committee_name = [_r['committee']['name'] for _r in r.json()['results']]
+            df['committee'] = committee_name
         #TODO: add other edge case formatting lines here
     return df
 

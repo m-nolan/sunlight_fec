@@ -42,7 +42,6 @@ def log_findisc_overlap(log_file,ids,names,shared_values):
         print('\n',file=log_f)
 
 def find_findisc_overlap(df_list,overlap_key,id_list,name_list,log_file=None,min_size=2):
-    assert all([overlap_key in df.keys() for df in df_list])
     for subset_idx in powerset(np.arange(len(df_list)),min_size):
         subset_idx = list(subset_idx)
         _data_list = list(np.array(df_list,dtype=object)[subset_idx])
@@ -52,7 +51,7 @@ def find_findisc_overlap(df_list,overlap_key,id_list,name_list,log_file=None,min
         print(_names)
         shared_values = list(
             set.intersection(
-                *[set(r_d[overlap_key]) for r_d in _data_list]
+                *[set(r_d.get(overlap_key,default=[])) for r_d in _data_list]
             )
         )
         shared_values.sort() # make the diffs make sense
@@ -91,7 +90,7 @@ def main(log_results):
     print('SCHEDULE E - INDEPENDENT EXPENDITURES')
     ind_exp_log_file = init_log_file('ind-exp') if log_results else None
     if len(ind_exp_data_list) > 1:
-        find_findisc_overlap(ind_exp_data_list,'committee_name',candidate_ids,candidate_name_list,ind_exp_log_file)
+        find_findisc_overlap(ind_exp_data_list,'committee',candidate_ids,candidate_name_list,ind_exp_log_file)
 
 if __name__ == "__main__":
     args = parse_inputs()
