@@ -7,6 +7,7 @@ DEFAULT_CANDIDATE_DATA = [
     ('H0MI08141','C00726687'),    # P. Junge
 ] #default (candidate, committee) ids
 
-RECEIPT_API_URL_ROOT = 'https://api.open.fec.gov/v1/schedules/schedule_a/?'
-DISBURSEMENT_API_URL_ROOT = 'https://api.open.fec.gov/v1/schedules/schedule_b/?'
-IND_EXP_API_URL_ROOT = 'https://api.open.fec.gov/v1/schedules/schedule_e/?'
+OPEN_FEC_API_URL_ROOT = 'https://api.open.fec.gov/v1/'
+RECEIPT_API_URL_ROOT = OPEN_FEC_API_URL_ROOT + 'schedules/schedule_a/?'
+DISBURSEMENT_API_URL_ROOT = OPEN_FEC_API_URL_ROOT + 'schedules/schedule_b/?'
+IND_EXP_API_URL_ROOT = OPEN_FEC_API_URL_ROOT + 'schedules/schedule_e/?'

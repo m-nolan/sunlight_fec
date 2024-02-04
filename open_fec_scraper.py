@@ -9,7 +9,7 @@ from json.decoder import JSONDecodeError
 from tqdm import tqdm
 
 from open_fec_api import api_get
-from project_params import DEFAULT_CANDIDATE_DATA, RECEIPT_API_URL_ROOT, DISBURSEMENT_API_URL_ROOT, IND_EXP_API_URL_ROOT
+from project_params import DEFAULT_CANDIDATE_DATA, OPEN_FEC_API_URL_ROOT, RECEIPT_API_URL_ROOT, DISBURSEMENT_API_URL_ROOT, IND_EXP_API_URL_ROOT
 
 def parse_inputs():
     parser = ArgumentParser()
@@ -33,20 +33,18 @@ def get_new_schedule_data(id,schedule):
     if existing_df_file_list:
         existing_df = pd.read_csv(existing_df_file_list[0],low_memory=False)
         min_date = existing_df[date_key][0]
-        _name = os.path.basename(existing_df_file_list[0]).split('_')[-1][:-4]
     else:
         existing_df = None
         min_date = None
-    data_df, name = get_findisc_df(id,min_date,schedule)
-    if name is None:
-        name = _name
+    name = get_entity_name(id,schedule)
+    data_df = get_findisc_df(id,min_date,schedule)
     data_df = pd.concat([data_df,existing_df],ignore_index=True)
     save_findisc_df(data_df,id,name,schedule_name)
 
 def api_return_to_df(r):
     exclude_list = list(set.intersection(
         set(r.json()['results'][0]),
-        {'committee','contributor','contributor_name'}
+        {'candidate','committee','contributor','contributor_name'}
     ))
     if r.json()['results']:
         df = pd.DataFrame.from_records(
@@ -59,12 +57,20 @@ def api_return_to_df(r):
         #TODO: add other edge case formatting lines here
     return df
 
+def get_entity_name(id, schedule):
+    param_dict, str_sep = {
+        'a': ({'api_url_root': OPEN_FEC_API_URL_ROOT+f'committee/{id}/?'}, ' '),
+        'b': ({'api_url_root': OPEN_FEC_API_URL_ROOT+f'committee/{id}/?'}, ' '),
+        'e': ({'api_url_root': OPEN_FEC_API_URL_ROOT+f'candidate/{id}/?'}, ', '),
+    }.get(schedule)
+    api_url = api_request_str_from_params(**param_dict)
+    r = api_get(api_url)
+    return r.json()['results'][0]['name'].replace(str_sep,'-')
+
 def get_findisc_df(id,min_date,schedule):
     api_call_url = create_api_call_url(id,schedule,pagination_dict={},min_date=min_date)
     r = api_get(api_call_url)
     if r.json()['results']:
-        name = r.json()['results'][0]['committee']['name'].replace(' ','-')
-        print(name)
         df = api_return_to_df(r)
         for _ in tqdm(range(1,r.json()['pagination']['pages'])):
             api_call_url = create_api_call_url(
@@ -77,15 +83,14 @@ def get_findisc_df(id,min_date,schedule):
             df = pd.concat([df,api_return_to_df(r)],ignore_index=True)
     else:
         df = pd.DataFrame([])
-        name = None
-    return df, name
+    return df
 
 def save_findisc_df(df,id,name,schedule_name):
     csv_file_name = f'./data/{schedule_name}_{id}_{name}.csv'
     print(f'saving data to:\t{csv_file_name}')
     df.to_csv(csv_file_name)
 
-def api_request_str_from_params(api_url_root='',pagination_dict='',min_date=None,**kwargs):
+def api_request_str_from_params(api_url_root='',pagination_dict={},min_date=None,**kwargs):
     request_dict = {
         **kwargs,
         'api_key': os.getenv("OPENFEC_API_KEY"),
@@ -99,7 +104,7 @@ def create_api_call_url(id,schedule,pagination_dict={},min_date=None,per_page=10
     param_dict = {
         'a': {'api_url_root': RECEIPT_API_URL_ROOT,'committee_id': id},
         'b': {'api_url_root': DISBURSEMENT_API_URL_ROOT,'committee_id': id},
-        'e': {'api_url_root': IND_EXP_API_URL_ROOT,'candidate_id': id},
+        'e': {'api_url_root': IND_EXP_API_URL_ROOT,'candidate_id': id,'support_oppose_indicator': 'S'},
     }.get(schedule)
     return api_request_str_from_params(pagination_dict=pagination_dict,min_date=min_date,per_page=per_page,**param_dict)
 
@@ -108,10 +113,10 @@ def main():
     load_dotenv()
     configure_data_directory()
     for candidate_id, committee_id in candidate_data_list:
-        print(f'committee_id:\t{committee_id}')
+        print(f'committee id:\t{committee_id}\tcandidate id:\t{candidate_id}')
         get_new_schedule_data(committee_id,'a')
         get_new_schedule_data(committee_id,'b')
-        # get_new_schedule_data(candidate_id,'e') #TODO: build the schedule e api string, work it into your framework.
+        get_new_schedule_data(candidate_id,'e')
 
 if __name__ == "__main__":
     args = parse_inputs()
