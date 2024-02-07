@@ -31,8 +31,8 @@ def get_new_schedule_data(id,schedule):
     }.get(schedule)
     existing_df_file_list = glob(f'./data/{schedule_name}_{id}_*.csv')
     if existing_df_file_list:
-        existing_df = pd.read_csv(existing_df_file_list[0],low_memory=False)
-        min_date = existing_df[date_key][0]
+        existing_df = pd.read_csv(existing_df_file_list[0],low_memory=False,index_col=0)
+        min_date = None if existing_df.empty else existing_df[date_key][0]
     else:
         existing_df = None
         min_date = None
@@ -44,7 +44,7 @@ def get_new_schedule_data(id,schedule):
 def api_return_to_df(r):
     exclude_list = list(set.intersection(
         set(r.json()['results'][0]),
-        {'candidate','committee','contributor','contributor_name'}
+        {'candidate','committee','contributor','contributor_name','recipient_committee'}
     ))
     if r.json()['results']:
         df = pd.DataFrame.from_records(
@@ -57,6 +57,11 @@ def api_return_to_df(r):
         if 'committee' in exclude_list:
             committee_name = [_r['committee']['name'] for _r in r.json()['results']]
             df['committee'] = committee_name
+        if 'recipient_committee' in exclude_list:
+            recipient_committee_id = []
+            for _r in r.json()['results']:
+                recipient_committee_id.append(_r['recipient_committee']['committee_id'] if isinstance(_r['recipient_committee'],dict) else None)
+            df['recipient_committee_id'] = recipient_committee_id
         #TODO: add other edge case formatting lines here
     return df
 

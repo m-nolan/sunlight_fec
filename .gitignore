@@ -4,3 +4,4 @@
 .env
 __pycache__
 data/scratch/*
+clean_fec_csv_columns.py
