@@ -1,4 +1,5 @@
 import requests as req
+import time
 
 from ratelimit import limits, sleep_and_retry
 
@@ -6,12 +7,13 @@ from ratelimit import limits, sleep_and_retry
 # Day-to-day donations should not be massive for each committee, and each API
 # call returns up to 100 receipts.
 MAX_CALLS = 5
-PERIOD = 18 # seconds
+PERIOD = 16 # seconds
 
 @sleep_and_retry
 @limits(MAX_CALLS,PERIOD)
 def api_get(url):
     r = req.get(url)
+    time.sleep(1)
     if r.status_code != 200:
         print(f'ERROR: Status Code {r.status_code} ({r.reason})')
         r.raise_for_status()

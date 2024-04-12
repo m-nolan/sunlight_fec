@@ -32,14 +32,23 @@ def get_new_schedule_data(id,schedule):
     existing_df_file_list = glob(f'./data/{schedule_name}_{id}_*.csv')
     if existing_df_file_list:
         existing_df = pd.read_csv(existing_df_file_list[0],low_memory=False,index_col=0)
-        min_date = None if existing_df.empty else existing_df[date_key][0]
+        if date_key in existing_df.keys():
+            existing_df[date_key] = pd.to_datetime(existing_df[date_key],format='ISO8601')
+            min_date_ts = existing_df[date_key][0]# + pd.Timedelta(1, unit="d")  # Bumps to the next day to avoid repeats on limited calls
+            min_date = None if existing_df.empty else min_date_ts.strftime('%Y-%m-%d')
+        else:
+            min_date = None
     else:
         existing_df = None
         min_date = None
     name = get_entity_name(id,schedule)
     data_df = get_findisc_df(id,min_date,schedule)
-    data_df = pd.concat([data_df,existing_df],ignore_index=True)
-    save_findisc_df(data_df,id,name,schedule_name)
+    if len(data_df) > 0:
+        data_df = pd.concat([data_df,existing_df],ignore_index=True)
+        # setting min-date to the most recent filing will get duplicate downloads, 
+        # but I don't want to miss anything.
+        data_df.drop_duplicates()   
+        save_findisc_df(data_df,id,name,schedule_name)
 
 def api_return_to_df(r):
     exclude_list = list(set.intersection(
@@ -120,7 +129,7 @@ def main():
     candidate_data_list = DEFAULT_CANDIDATE_DATA
     load_dotenv()
     configure_data_directory()
-    for candidate_id, committee_id in candidate_data_list:
+    for _, candidate_id, committee_id in candidate_data_list:
         print(f'committee id:\t{committee_id}\tcandidate id:\t{candidate_id}')
         get_new_schedule_data(committee_id,'a')
         get_new_schedule_data(committee_id,'b')

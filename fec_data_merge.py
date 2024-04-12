@@ -61,7 +61,7 @@ def find_findisc_overlap(df_list,overlap_key,id_list,name_list,log_file=None,min
 
 def main(log_results):
     candidate_data = DEFAULT_CANDIDATE_DATA
-    candidate_ids, committee_ids = tuple(map(list, zip(*candidate_data)))
+    _, candidate_ids, committee_ids = tuple(map(list, zip(*candidate_data)))
     receipt_data_list = []
     disbursement_data_list = []
     ind_exp_data_list = []
