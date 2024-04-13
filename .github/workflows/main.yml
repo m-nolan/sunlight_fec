@@ -34,20 +34,20 @@ jobs:
      run: python open_fec_scraper.py
      env: 
        OPENFEC_API_KEY: ${{ secrets.OPENFEC_API_KEY }}
-       GSA_KEY_DICT: ${{ base64 --decode -i secrets.GSA_KEY_DICT }}
+       GSA_KEY_DICT: ${{ base64 -w 0 secrets.GSA_KEY_DICT }}
 
    # Step 4
    - name: Compute Overlaps
      run: python fec_data_merge.py
      env: 
        OPENFEC_API_KEY: ${{ secrets.OPENFEC_API_KEY }}
-       GSA_KEY_DICT: ${{ base64 --decode -i secrets.GSA_KEY_DICT }}
+       GSA_KEY_DICT: ${{ base64 -w 0 secrets.GSA_KEY_DICT }}
 
    # Step 5
    - name: Plot top contributors, recipients
      run: python plot_fec_data.py
      env:
-       GSA_KEY_DICT: ${{ base64 --decode -i secrets.GSA_KEY_DICT }}
+       GSA_KEY_DICT: ${{ base64 -w 0 secrets.GSA_KEY_DICT }}
 
    # Step 6   
    - name: Commit files
