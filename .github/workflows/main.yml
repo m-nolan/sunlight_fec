@@ -33,13 +33,13 @@ jobs:
 
      run: python open_fec_scraper.py
      env: 
-       OPEN_FEC_API_KEY: ${{ secrets.OPENFEC_API_KEY }}
+       OPENFEC_API_KEY: ${{ secrets.OPENFEC_API_KEY }}
 
    # Step 4
    - name: Compute Overlaps
      run: python fec_data_merge.py
      env: 
-       OPEN_FEC_API_KEY: ${{ secrets.OPENFEC_API_KEY }}
+       OPENFEC_API_KEY: ${{ secrets.OPENFEC_API_KEY }}
 
    # Step 5
    - name: Plot top contributors, recipients
