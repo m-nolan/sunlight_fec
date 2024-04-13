@@ -67,7 +67,7 @@ def main(log_results):
     ind_exp_data_list = []
     committee_name_list = []
     candidate_name_list = []
-    for can_id, com_id in candidate_data:
+    for _, can_id, com_id in candidate_data:
         _receipt_data, _committee_name = load_findisc_data(com_id,schedule_name='receipt')
         _disbursement_data, _ = load_findisc_data(com_id,schedule_name='disbursement')
         _ind_exp_data, _candidate_name = load_findisc_data(can_id,schedule_name='ind-exp')

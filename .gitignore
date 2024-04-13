@@ -1,7 +1,6 @@
 *.ipynb
 *.pdf
 *.jpg
-*.png
 .env
 __pycache__
 data/scratch/*

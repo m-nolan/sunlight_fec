@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import requests as req
+import time
 
 from argparse import ArgumentParser
 from dotenv import load_dotenv
@@ -47,7 +48,7 @@ def get_new_schedule_data(id,schedule):
         data_df = pd.concat([data_df,existing_df],ignore_index=True)
         # setting min-date to the most recent filing will get duplicate downloads, 
         # but I don't want to miss anything.
-        data_df.drop_duplicates()   
+        data_df = data_df.drop_duplicates()
         save_findisc_df(data_df,id,name,schedule_name)
 
 def api_return_to_df(r):
@@ -132,8 +133,11 @@ def main():
     for _, candidate_id, committee_id in candidate_data_list:
         print(f'committee id:\t{committee_id}\tcandidate id:\t{candidate_id}')
         get_new_schedule_data(committee_id,'a')
+        time.sleep(1)   # when nothing is added, it moves too quickly. This is to avoid 429 errors.
         get_new_schedule_data(committee_id,'b')
+        time.sleep(1)
         get_new_schedule_data(candidate_id,'e')
+        time.sleep(5)
 
 if __name__ == "__main__":
     args = parse_inputs()

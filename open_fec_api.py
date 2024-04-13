@@ -1,5 +1,4 @@
 import requests as req
-import time
 
 from ratelimit import limits, sleep_and_retry
 
@@ -13,7 +12,6 @@ PERIOD = 16 # seconds
 @limits(MAX_CALLS,PERIOD)
 def api_get(url):
     r = req.get(url)
-    time.sleep(1)
     if r.status_code != 200:
         print(f'ERROR: Status Code {r.status_code} ({r.reason})')
         r.raise_for_status()
