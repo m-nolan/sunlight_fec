@@ -18,7 +18,8 @@ def parse_inputs():
     return parser.parse_args()
 
 def load_api_key(file='.env'):
-    load_dotenv(file)
+    if os.path.exists(file):
+        load_dotenv(file)
 
 def configure_data_directory():
     if not os.path.exists('./data'):
