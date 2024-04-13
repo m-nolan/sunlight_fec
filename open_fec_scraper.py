@@ -1,3 +1,4 @@
+import json
 import os
 import pandas as pd
 import requests as req
@@ -6,7 +7,6 @@ import time
 from argparse import ArgumentParser
 from dotenv import load_dotenv
 from glob import glob
-from json.decoder import JSONDecodeError
 from tqdm import tqdm
 
 from open_fec_api import api_get
@@ -36,7 +36,7 @@ def get_new_schedule_data(id,schedule):
         existing_df = pd.read_csv(existing_df_file_list[0],low_memory=False,index_col=0)
         if date_key in existing_df.keys():
             existing_df[date_key] = pd.to_datetime(existing_df[date_key],format='ISO8601')
-            min_date_ts = existing_df[date_key][0]# + pd.Timedelta(1, unit="d")  # Bumps to the next day to avoid repeats on limited calls
+            min_date_ts = existing_df[date_key][0] + pd.Timedelta(1, unit="d")  # Bumps to the next day to avoid repeats on limited calls
             min_date = None if existing_df.empty else min_date_ts.strftime('%Y-%m-%d')
         else:
             min_date = None
@@ -44,9 +44,9 @@ def get_new_schedule_data(id,schedule):
         existing_df = None
         min_date = None
     name = get_entity_name(id,schedule)
-    data_df = get_findisc_df(id,min_date,schedule)
-    if len(data_df) > 0:
-        data_df = pd.concat([data_df,existing_df],ignore_index=True)
+    new_data_df = get_findisc_df(id,min_date,schedule)
+    if len(new_data_df) > 0:
+        data_df = pd.concat([new_data_df,existing_df],ignore_index=True)
         # setting min-date to the most recent filing will get duplicate downloads, 
         # but I don't want to miss anything.
         data_df = data_df.drop_duplicates()
@@ -73,7 +73,6 @@ def api_return_to_df(r):
             for _r in r.json()['results']:
                 recipient_committee_id.append(_r['recipient_committee']['committee_id'] if isinstance(_r['recipient_committee'],dict) else None)
             df['recipient_committee_id'] = recipient_committee_id
-        #TODO: add other edge case formatting lines here
     return df
 
 def get_entity_name(id, schedule):
@@ -129,7 +128,7 @@ def create_api_call_url(id,schedule,pagination_dict={},min_date=None,per_page=10
 
 def main():
     candidate_data_list = DEFAULT_CANDIDATE_DATA
-    load_dotenv()
+    load_api_key()
     configure_data_directory()
     for _, candidate_id, committee_id in candidate_data_list:
         print(f'committee id:\t{committee_id}\tcandidate id:\t{candidate_id}')
