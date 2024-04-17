@@ -30,7 +30,7 @@ def load_findisc_data(id,schedule_name):
         return None, None
 
 def init_log_file(schedule_name):
-    log_file_path = f"./data/{schedule_name}_overlap_{datetime.strftime(datetime.now(),'%Y-%m-%d_%H-%M-%S')}.md"
+    log_file_path = f"./reports/{schedule_name}_overlap_{datetime.strftime(datetime.now(),'%Y-%m-%d_%H-%M-%S')}.md"
     return log_file_path
 
 def log_findisc_overlap(log_file,ids,names,shared_values):
