@@ -43,7 +43,7 @@ jobs:
 
    # Step 5
    - name: Compute Candidate Overlaps
-     run: python rec_data_merge_party.py
+     run: python fec_data_merge_party.py
 
    # Step 6
    - name: Plot top contributors, recipients
