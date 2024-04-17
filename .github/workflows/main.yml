@@ -38,7 +38,7 @@ jobs:
 
    # Step 4
    - name: Compute Overlaps
-     run: python fec_data_merge.py
+     run: python fec_data_merge_comm.py
      env: 
        OPENFEC_API_KEY: ${{ secrets.OPENFEC_API_KEY }}
        GSA_KEY_DICT: ${{ base64 -w 0 secrets.GSA_KEY_DICT }}
