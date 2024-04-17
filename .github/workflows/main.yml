@@ -36,16 +36,20 @@ jobs:
        OPENFEC_API_KEY: ${{ secrets.OPENFEC_API_KEY }}
 
    # Step 4
-   - name: Compute Overlaps
+   - name: Compute Party Overlaps
      run: python fec_data_merge_comm.py
      env: 
        OPENFEC_API_KEY: ${{ secrets.OPENFEC_API_KEY }}
 
    # Step 5
+   - name: Compute Candidate Overlaps
+     run: python rec_data_merge_party.py
+
+   # Step 6
    - name: Plot top contributors, recipients
      run: python plot_fec_data.py
 
-   # Step 6   
+   # Step 7   
    - name: Commit files
      run: |
        git config remote.origin.url https://github.com/m-nolan/sunlight_fec.git
