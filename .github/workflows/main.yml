@@ -37,7 +37,7 @@ jobs:
 
    # Step 4
    - name: Compute Party Overlaps
-     run: python fec_data_merge_comm.py
+     run: python fec_data_merge_comm.py -l # need the -l flag to write out the report file.
      env: 
        OPENFEC_API_KEY: ${{ secrets.OPENFEC_API_KEY }}
 
