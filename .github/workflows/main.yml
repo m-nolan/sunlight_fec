@@ -56,7 +56,7 @@ jobs:
        git config --global user.name "$(git --no-pager log --format=format:'%an' -n 1)"
        git config --global user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
        git add data/*.csv
-       git add data/*.md
+       git add reports/*.md
        git add figures/*.png
        git commit -m "Automated commit from GitHub Actions" || exit 0
        git pull
