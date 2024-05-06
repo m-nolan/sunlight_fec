@@ -5,3 +5,4 @@
 __pycache__
 data/scratch/*
 clean_fec_csv_columns.py
+google_auth_secret.json

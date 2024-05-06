@@ -1,7 +1,8 @@
-import gspread
 import csv
-import os
+import gspread
 import json
+import os
+import platform
 
 from glob import glob
 
@@ -10,24 +11,31 @@ from project_params import DEFAULT_CANDIDATE_DATA, GDRIVE_SCH_A_SHEET_NAME, GDRI
 SCH_DICT = {
     'schedule_a': 'receipt',
     'schedule_b': 'disbursement',
-    'schedule_e': 'ind_exp'
+    'schedule_e': 'ind-exp'
 }
 
 def get_google_client():
-    credentials = os.environ.get("GOOGLE_SECRET_KEY")
+    os_name = platform.system()
+    if os_name == 'Windows':
+        with open('google_auth_secret.json','r') as gskf:
+            credentials = gskf.read()
+    else:
+        credentials = os.environ.get("GOOGLE_SECRET_KEY")
     return gspread.service_account_from_dict(json.loads(credentials))
 
 def open_gsheet(client,schedule_key,candidate_key):
-    sheet = client.open(sheetname=schedule_key)
-    if candidate_key in sheet.worksheets():
+    sheet = client.open(schedule_key)
+    if candidate_key in [ws.title for ws in sheet.worksheets()]:
         worksheet = sheet.worksheet(candidate_key)
     else:
-        worksheet = sheet.add_worksheet(title=candidate_key)
+        worksheet = sheet.add_worksheet(title=candidate_key,rows=1,cols=1)
     return worksheet
 
 def get_candidate_schedule_file(candidate_id,committee_id,schedule_key):
     name_key = candidate_id if schedule_key == 'schedule_e' else committee_id
-    return glob(os.path.join('data',f'{SCH_DICT[schedule_key]}_{name_key}*.csv'))
+    file_list = glob(os.path.join('data',f'{SCH_DICT[schedule_key]}_{name_key}*.csv'))
+    filename = file_list[0] if len(file_list) > 0 else None
+    return filename
 
 def update_gsheet(sheet,filename):
     data_out = []
@@ -35,15 +43,19 @@ def update_gsheet(sheet,filename):
         csv_data = csv.reader(csvfile)
         for row in csv_data:
             data_out.append(row)
-    sheet.update('A1',data_out)
+    sheet.update(data_out,'A1')
 
 def main():
     client = get_google_client()
     for schedule_key in [GDRIVE_SCH_A_SHEET_NAME, GDRIVE_SCH_B_SHEET_NAME, GDRIVE_SCH_E_SHEET_NAME]:
+        print(f"Updating filings for: {schedule_key}")
         for candidate_name, candidate_id, committee_id in DEFAULT_CANDIDATE_DATA:
+            print(f"Moving data for: {candidate_name}")
             sheet = open_gsheet(client,schedule_key,candidate_name)
             schedule_filename = get_candidate_schedule_file(candidate_id, committee_id, schedule_key)
-            update_gsheet(sheet,schedule_filename)
+            if schedule_filename:
+                print(f"File found: {schedule_filename}")
+                update_gsheet(sheet,schedule_filename)
 
 if __name__ == "__main__":
     main()
