@@ -29,3 +29,7 @@ OPEN_FEC_API_URL_ROOT = 'https://api.open.fec.gov/v1/'
 RECEIPT_API_URL_ROOT = OPEN_FEC_API_URL_ROOT + 'schedules/schedule_a/?'
 DISBURSEMENT_API_URL_ROOT = OPEN_FEC_API_URL_ROOT + 'schedules/schedule_b/?'
 IND_EXP_API_URL_ROOT = OPEN_FEC_API_URL_ROOT + 'schedules/schedule_e/?'
+
+GDRIVE_SCH_A_SHEET_NAME = 'schedule_a'
+GDRIVE_SCH_B_SHEET_NAME = 'schedule_b'
+GDRIVE_SCH_E_SHEET_NAME = 'schedule_e'
