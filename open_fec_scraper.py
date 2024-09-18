@@ -37,7 +37,7 @@ def get_new_schedule_data(id,schedule):
         if date_key in existing_df.keys():
             existing_df[date_key] = pd.to_datetime(existing_df[date_key],format='ISO8601')
             min_date_ts = existing_df[date_key][0] + pd.Timedelta(1, unit="d")  # Bumps to the next day to avoid repeats on limited calls
-            min_date = None if existing_df.empty else min_date_ts.strftime('%Y-%m-%d')
+            min_date = pd.Timestamp('2023-01-01') if existing_df.empty else min_date_ts.strftime('%Y-%m-%d') # only considering 2024 election
         else:
             min_date = None
     else:

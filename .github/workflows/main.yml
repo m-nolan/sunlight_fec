@@ -26,11 +26,6 @@ jobs:
 
    # Step 3   
    - name: Run scraper
-
-  # Optional: If you are publishing to Google sheets, uncomment these next 2 lines
-     #env: 
-      #GOOGLE_SECRET_KEY: ${{ secrets.GOOGLE_SECRET_KEY }}
-
      run: python open_fec_scraper.py
      env: 
        OPENFEC_API_KEY: ${{ secrets.OPENFEC_API_KEY }}
