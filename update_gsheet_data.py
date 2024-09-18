@@ -55,7 +55,12 @@ def main():
             schedule_filename = get_candidate_schedule_file(candidate_id, committee_id, schedule_key)
             if schedule_filename:
                 print(f"File found: {schedule_filename}")
-                update_gsheet(sheet,schedule_filename)
+                try:
+                    update_gsheet(sheet,schedule_filename)
+                except gspread.exceptions.APIError:
+                    print('ERROR: Google sheet at maximum size. Cannot append data.')
+                else:
+                    print('Unknown error occurred - proceeding to next candidate dataset.')
 
 if __name__ == "__main__":
     main()
