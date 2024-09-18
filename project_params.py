@@ -1,5 +1,5 @@
 DEFAULT_CANDIDATE_DATA = [
-    ('M-WILKINSON','H4CA49164','C00848168'),    # M. Wilkinson
+    # ('M-WILKINSON','H4CA49164','C00848168'),    # M. Wilkinson
     ('S-LEE','H6NV04020','C00655613'),    # S. Lee
     ('B-WILLIAMS','H2NY22212','C00806307'),    # B. Williams
     ('M-DE-LA-CRUZ','H0TX15124','C00765719'),    # M. De La Cruz

@@ -42,7 +42,7 @@ def update_gsheet(sheet,filename):
     with open(filename,'r') as csvfile:
         csv_data = csv.reader(csvfile)
         for row in csv_data:
-            data_out.append(row)
+            data_out.append(row)    # TODO: move error handling down to this level, out of main()
     sheet.update(data_out,'A1')
 
 def main():
