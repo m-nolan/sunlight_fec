@@ -51,7 +51,7 @@ def write_overlap_report_file(party_overlap_df,schedule_key,party_key,amount_key
         for party_name, row in party_overlap_df[:n_contrib].iterrows():
             print(f'{idx}. {party_name}',file=rf)
             print(f'\t- total: ${row[amount_key]:0.2f}',file=rf)
-            print(f'\t- {", ".join(row[party_key])}\n',file=rf)
+            print(f'\t- {", ".join([s for s in row[party_key] if isinstance(s,str)])}\n',file=rf)   # TODO: These nan values should not be here. This is a bucket fix.
             idx += 1
 
 def write_overlap_report(schedule_key, candidate_df):
