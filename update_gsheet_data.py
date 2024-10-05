@@ -51,7 +51,11 @@ def main():
         print(f"Updating filings for: {schedule_key}")
         for candidate_name, candidate_id, committee_id in DEFAULT_CANDIDATE_DATA:
             print(f"Moving data for: {candidate_name}")
-            sheet = open_gsheet(client,schedule_key,candidate_name)
+            try:
+                sheet = open_gsheet(client,schedule_key,candidate_name)
+            except:
+                print(f'could not open google sheet for {candidate_name} - proceeding to next candidate')
+                continue
             schedule_filename = get_candidate_schedule_file(candidate_id, committee_id, schedule_key)
             if schedule_filename:
                 print(f"File found: {schedule_filename}")
