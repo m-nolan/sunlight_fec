@@ -1,0 +1,403 @@
+# FEC Schedule B Overlap Report
+
+2024-10-29_21-21-48
+0. SINGER, PAUL
+	- total: $13200.00
+	- B-WILLIAMS, M-DE-LA-CRUZ
+
+1. A. HUNSAKER, NANCY
+	- total: $3300.00
+	- 
+
+2. PAIGE, KENNETH
+	- total: $300.00
+	- K-KILEY
+
+3. PENTON, BOYD
+	- total: $19528.61
+	- S-LEE
+
+4. PECKMAN, PHILLIP CRAIG
+	- total: $1300.00
+	- S-LEE
+
+5. PEARSALL, ERIKA C.
+	- total: $1000.00
+	- S-LEE
+
+6. PATTERSON, JOE
+	- total: $250.00
+	- K-KILEY
+
+7. PATEL, SYON
+	- total: $500.00
+	- S-LEE
+
+8. PATEL, SATYA
+	- total: $300.00
+	- S-LEE
+
+9. PATEL, JAMIE
+	- total: $790.69
+	- S-LEE
+
+10. PARKS, NATHANIEL
+	- total: $219.00
+	- S-LEE
+
+11. PARKES, SHELBY
+	- total: $9849.41
+	- S-LEE
+
+12. PARKER, SEAN
+	- total: $100.00
+	- S-LEE
+
+13. PAGE, GLORIA
+	- total: $1800.00
+	- S-LEE
+
+14. RIVERA, MAYRA
+	- total: $475.00
+	- M-DE-LA-CRUZ
+
+15. OH, SAM
+	- total: $11200.00
+	- 
+
+16. OAKLEY, MADISON
+	- total: $34088.43
+	- S-LEE
+
+17. O'BRIEN, SEAN
+	- total: $1594.00
+	- M-DE-LA-CRUZ
+
+18. NUNNLEE, NICK
+	- total: $288.88
+	- K-KILEY
+
+19. NOVIK, JAY
+	- total: $2900.00
+	- M-DE-LA-CRUZ
+
+20. NICHOLSON, ANN
+	- total: $1400.00
+	- S-LEE
+
+21. NELSON, VIRGINIA
+	- total: $250.00
+	- S-LEE
+
+22. NAVE, JAMES
+	- total: $2833.00
+	- S-LEE
+
+23. NAVARRO, KAREN
+	- total: $168578.67
+	- M-DE-LA-CRUZ
+
+24. NASH, JILL
+	- total: $3300.00
+	- K-KILEY
+
+25. NAEEM, KHADIJAH
+	- total: $16562.87
+	- S-LEE
+
+26. PERLMAN, EZRA B.
+	- total: $2900.00
+	- S-LEE
+
+27. PETRIE, ARTHUR J
+	- total: $25.00
+	- S-LEE
+
+28. PHILLIPS, KENNETH
+	- total: $2690.00
+	- K-KILEY
+
+29. PILAR AMINI, GABRIELLA
+	- total: $9000.00
+	- S-LEE
+
+30. RIVAS, EDUARDO
+	- total: $7527.06
+	- M-DE-LA-CRUZ
+
+31. RITTENBURY, JAYDEN H
+	- total: $28000.00
+	- P-JUNGE
+
+32. RIEDBERGER, MELVIN F
+	- total: $300.00
+	- M-DE-LA-CRUZ
+
+33. RESOR, STORY
+	- total: $1000.00
+	- S-LEE
+
+34. RESEARCH GROUP, REMINGTON
+	- total: $8500.00
+	- 
+
+35. REINHARD, DONALD G
+	- total: $319.00
+	- M-DE-LA-CRUZ
+
+36. RAY, WILLIAM M
+	- total: $2000.00
+	- S-LEE
+
+37. RATNER, CB
+	- total: $4200.00
+	- K-KILEY
+
+38. RANGLAS, TOM
+	- total: $41.02
+	- 
+
+39. RANALLI, LORI
+	- total: $1574.88
+	- B-WILLIAMS
+
+40. RANALLI, JIM
+	- total: $1574.88
+	- B-WILLIAMS
+
+41. RAMIREZ, MANUEL
+	- total: $3300.00
+	- 
+
+42. RADOVANOVIC, NIKOLA
+	- total: $11767.84
+	- 
+
+43. QUIST, RONALD
+	- total: $2700.00
+	- S-LEE
+
+44. PURSIANO, DAVID
+	- total: $500.00
+	- S-LEE
+
+45. PRESCOTT, MICHAEL
+	- total: $500.00
+	- S-LEE
+
+46. POURTEYMOUR, RAMIN
+	- total: $3300.00
+	- 
+
+47. POSS, ELLEN M
+	- total: $200.00
+	- S-LEE
+
+48. PORTER, JON
+	- total: $200.00
+	- S-LEE
+
+49. POLUNSKY, ALLAN
+	- total: $2900.00
+	- M-DE-LA-CRUZ
+
+50. POLLEY, ALEX
+	- total: $136243.03
+	- S-LEE
+
+51. POLING GOLDENNE, MARTA
+	- total: $500.00
+	- S-LEE
+
+52. PLASTER, RICHARD
+	- total: $2800.00
+	- S-LEE
+
+53. NABI, DURRE
+	- total: $1000.00
+	- S-LEE
+
+54. MYERS, JOANNA
+	- total: $450.00
+	- B-WILLIAMS
+
+55. MYERS, JESS
+	- total: $1883.97
+	- S-LEE
+
+56. MCCOY, BRIAN
+	- total: $2800.00
+	- M-DE-LA-CRUZ
+
+57. MATHENY, DAVID
+	- total: $3000.00
+	- M-DE-LA-CRUZ
+
+58. MASON, FLORA
+	- total: $200.00
+	- S-LEE
+
+59. MARTINEZ, JOHN
+	- total: $552.00
+	- M-DE-LA-CRUZ
+
+60. MARSHALL, SHERYL
+	- total: $2800.00
+	- S-LEE
+
+61. MARIOTTI, JACKSON
+	- total: $84555.64
+	- S-LEE
+
+62. MANOCHERIAN, JED
+	- total: $200.00
+	- S-LEE
+
+63. MANABAT, MARCUS JAMES
+	- total: $2500.00
+	- S-LEE
+
+64. MALETYCH, KURT
+	- total: $3300.00
+	- 
+
+65. MALETYCH, JOANN
+	- total: $3300.00
+	- 
+
+66. MAJID, RAJA A
+	- total: $350.00
+	- S-LEE
+
+67. MAINS, SPENCER
+	- total: $3300.00
+	- 
+
+68. MAINS, CHELSEA
+	- total: $3300.00
+	- 
+
+69. MAFRIGE, DAVID Z.
+	- total: $2900.00
+	- M-DE-LA-CRUZ
+
+70. MACY, DANA
+	- total: $500.00
+	- S-LEE
+
+71. LUCIO, JOSE
+	- total: $1000.00
+	- M-DE-LA-CRUZ
+
+72. LOW, ROBERT
+	- total: $588.89
+	- M-DE-LA-CRUZ
+
+73. LOUIE, ANNAMARIE
+	- total: $270.00
+	- S-LEE
+
+74. LORD, HENRY
+	- total: $1050.00
+	- S-LEE
+
+75. LONGTIN, LUANN
+	- total: $250.00
+	- S-LEE
+
+76. LOCKHEIMER, ERICA
+	- total: $3300.00
+	- S-LEE
+
+77. LIU, FENGLAN
+	- total: $1000.00
+	- K-KILEY
+
+78. LINTON, ANDREW
+	- total: $18609.67
+	- S-LEE
+
+79. LEWIS, DEBORAH
+	- total: $3000.00
+	- S-LEE
+
+80. MCCORMACK, JEANNE
+	- total: $3.00
+	- S-LEE
+
+81. MCDEVITT, SYDNEY
+	- total: $12151.69
+	- S-LEE
+
+82. MUSCATINE, LISSA
+	- total: $250.00
+	- S-LEE
+
+83. MCFARREN, SANDRA KOCH
+	- total: $100.00
+	- S-LEE
+
+84. MURRAY, MICHAEL
+	- total: $6949.83
+	- K-KILEY
+
+85. MURPHY, EUGENE
+	- total: $100.00
+	- M-DE-LA-CRUZ
+
+86. MULLIN, TOM
+	- total: $600.00
+	- S-LEE
+
+87. MUANGJINDA, SUNEE
+	- total: $3465.00
+	- S-LEE
+
+88. MORRIS, ALEXANDRA
+	- total: $95990.34
+	- S-LEE
+
+89. MOROUN, MATTHEW
+	- total: $3300.00
+	- 
+
+90. MOROUN, LINDSEY
+	- total: $100.00
+	- 
+
+91. MORAN, KELSEY
+	- total: $166.67
+	- S-LEE
+
+92. MONTGOMERY, GRACE
+	- total: $4200.34
+	- S-LEE
+
+93. MOLINA, REY
+	- total: $5445.00
+	- M-DE-LA-CRUZ
+
+94. MOGHADAM, SHAHAB
+	- total: $3300.00
+	- M-DE-LA-CRUZ
+
+95. MITTLEMAN, ARI
+	- total: $270.00
+	- S-LEE
+
+96. MITCHELL, LEE ROY
+	- total: $2900.00
+	- M-DE-LA-CRUZ
+
+97. MISCIKOWSKI, CYNTHIA
+	- total: $2700.00
+	- S-LEE
+
+98. MIRLLER, JHON
+	- total: $1000.00
+	- K-KILEY
+
+99. MIRANDA, ALONSO
+	- total: $498.00
+	- M-DE-LA-CRUZ
+
